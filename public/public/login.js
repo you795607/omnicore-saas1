@@ -5,7 +5,7 @@ document.getElementById('loginBtn').addEventListener('click', function() {
   // تحقق بسيط بدون قاعدة بيانات
   if(email === "user@example.com" && password === "123456") {
     alert("تم تسجيل الدخول بنجاح!");
-    window.location.href = "dashboard.html"; // سينقلك للوحة التحكم
+window.location.href = "dashboard.html";// سينقلك للوحة التحكم
   } else {
     alert("البريد الإلكتروني أو كلمة المرور غير صحيحة!");
   }
