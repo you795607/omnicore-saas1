@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import fetch from "node-fetch";
 dotenv.config();
 const app = express();
 
