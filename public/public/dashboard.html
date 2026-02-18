@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+</head>
+<body>
+
+<h1>Welcome to OmniCore AI Dashboard</h1>
+
+<textarea id="prompt" placeholder="Ask AI something..."></textarea>
+<button onclick="askAI()">Ask AI</button>
+
+<div id="response"></div>
+
+<script>
+async function askAI() {
+  const prompt = document.getElementById("prompt").value;
+
+  const res = await fetch("/ask-ai", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ prompt })
+  });
+
+  const data = await res.json();
+  document.getElementById("response").innerText = data.reply;
+}
+</script>
+
+</body>
+</html>
