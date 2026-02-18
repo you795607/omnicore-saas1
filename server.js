@@ -56,7 +56,33 @@ app.post("/login", async (req, res) => {
 app.get("/dashboard", (req, res) => {
   res.sendFile(process.cwd() + "/public/dashboard.html");
 });
+app.post("/ask-ai", async (req, res) => {
+  const { prompt } = req.body;
 
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: "You are a professional business AI assistant." },
+          { role: "user", content: prompt }
+        ]
+      })
+    });
+
+    const data = await response.json();
+
+    res.json({ reply: data.choices[0].message.content });
+
+  } catch (error) {
+    res.status(500).json({ reply: "AI Error" });
+  }
+});
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server started");
 });
