@@ -1,31 +1,28 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-<title>Dashboard</title>
+  <meta charset="UTF-8">
+  <title>لوحة التحكم</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #111; color: #0ff; padding: 20px; }
+    h1 { text-align: center; }
+    button { padding: 10px 20px; margin: 10px; cursor: pointer; }
+  </style>
 </head>
 <body>
+  <h1>لوحة التحكم الرئيسية</h1>
 
-<h1>Welcome to OmniCore AI Dashboard</h1>
+  <button onclick="openAI()">تشغيل الذكاء الاصطناعي</button>
+  <button onclick="alert('ميزة مستقبلية!')">مهام</button>
+  <button onclick="alert('ميزة مستقبلية!')">شركات</button>
 
-<textarea id="prompt" placeholder="Ask AI something..."></textarea>
-<button onclick="askAI()">Ask AI</button>
+  <div id="aiOutput" style="margin-top:20px; padding:10px; border:1px solid #0ff;"></div>
 
-<div id="response"></div>
-
-<script>
-async function askAI() {
-  const prompt = document.getElementById("prompt").value;
-
-  const res = await fetch("/ask-ai", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ prompt })
-  });
-
-  const data = await res.json();
-  document.getElementById("response").innerText = data.reply;
-}
-</script>
-
+  <script>
+    function openAI() {
+      document.getElementById('aiOutput').innerText = "🔹 الذكاء الاصطناعي جاهز للعمل!";
+    }
+  </script>
 </body>
 </html>
